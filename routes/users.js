@@ -1,5 +1,5 @@
 'use strict';
-const valid = require('../util/valid');
+const valid = require('../lib/valid');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -12,7 +12,7 @@ router.get('/', (req, res, next) =>{
       console.log(users);
       res.json(users);
     } else {
-      res.status(401).json({ message: 'User does not exist.' });
+      res.status(401).json({ message: "Ain't No Users eh?" });
     }
   });
 });
