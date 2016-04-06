@@ -1,11 +1,9 @@
 
-<div class="jumbotron">
-  {{#each items}}
-    <div class="col-sm-2">
-      <h3>{{name}}</h3>
-      <img src="#" alt="#" width="100px" height="100px"/>
-      <p>${{price}}</p>
-      <p>{{info}}</p>
-    </div>
-  {{/each}}
-</div>
+{{#each items}}
+  <div class="col-sm-2">
+    <h3>{{name}}</h3>
+    <img src="#" alt="#" width="100px" height="100px"/>
+    <p>${{price}}</p>
+    <p>{{info}}</p>
+  </div>
+{{/each}}
