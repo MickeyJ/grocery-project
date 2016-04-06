@@ -8,7 +8,8 @@ class Valid{
     if(condition){
       $(target).addClass('invalid-input')
     } else {
-      this.Input.push(value);
+      this.Input.unshift(value);
+      console.log(this.Input);
       $(target).removeClass('invalid-input')
     }
   }

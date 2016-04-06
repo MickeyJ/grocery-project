@@ -1,5 +1,5 @@
 'use strict';
-const valid = require('../lib/valid');
+const valid = require('../util/valid');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
