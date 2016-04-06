@@ -8,4 +8,7 @@ $ knex init
 $ knex migrate:latest
   
 $ knex seed:run
+
+$ gulp
+$ nodemon
 ```
