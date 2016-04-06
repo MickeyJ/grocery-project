@@ -4,7 +4,7 @@ import valid from './valid'
 
 $(function(){
   const regexEmail    = /^([A-Za-z\._\-0-9])*[@]([A-Za-z\._\-0-9])*[\.]([A-Za-z]{2,4})$/;
-  const regexPassword = /\d/;
+  const regexPassword = /\d\w/;
   
   user.name.on('change', function(){
     valid.Name(this, this.value)

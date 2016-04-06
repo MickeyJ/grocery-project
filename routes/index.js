@@ -12,7 +12,7 @@ router.get('/', (req, res, next) =>{
 router.get('/browse', (req, res, next) =>{
   Items()
     .orderBy('id')
-    .then(items =>{
+    .then(items => {
       res.render('browse', {
         title: 'Browse Stuff',
         items
