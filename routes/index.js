@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const knex = require('knex')(require('../knexfile')['development']);
-const Items = function() { return knex('items') };
+const Users = function() { return knex('users') };
 
 router.get('/', (req, res, next) =>{
   res.render('index', {
@@ -9,13 +9,14 @@ router.get('/', (req, res, next) =>{
   });
 });
 
-router.get('/browse', (req, res, next) =>{
-  Items()
-    .orderBy('id')
-    .then(items => {
-      res.render('browse', {
-        title: 'Browse Stuff',
-        items
+router.get('/home/:user', (req, res, next) =>{
+  Users()
+    .where({name: req.params.user}).first()
+    .then(user => {
+      console.log(user);
+      res.render('index', {
+        title: 'Order Stuff Website',
+        user
       });
     })
     .catch(err =>{

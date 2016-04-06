@@ -1,8 +1,24 @@
-<p>Create New Account</p>
 
+{{#unless user}}
+<p>Create New Account</p>
 <form class="form-group" id="signup-form" action="/users/signup" method="POST">
-  <input class="form-control" type="text" id="name"  name="name" placeholder="Name">
-  <input class="form-control" type="text" id="email"  name="email" placeholder="Email">
-  <input class="form-control" type="password" id="password"  name="password" placeholder="Password">
+  <input class="form-control" type="text" id="signup_name"  name="signup_name" placeholder="Name">
+  <input class="form-control" type="text" id="signup_email"  name="signup_email" placeholder="Email">
+  <input class="form-control" type="password" id="signup_password"  name="signup_password" placeholder="Password">
   <input class="btn btn-info" type="submit" id="signup-btn"  value="Signup">
 </form >
+{{/unless}}
+
+{{#unless user}}
+<p>Login</p>
+<form class="form-group" id="login-form" action="/users/login" method="POST">
+  <input class="form-control" type="text" id="login_email"  name="login_email" placeholder="Email">
+  <input class="form-control" type="password" id="login_password"  name="login_password" placeholder="Password">
+  <input class="btn btn-info" type="submit" id="login-btn"  value="Login">
+</form >
+{{/unless}}
+
+
+{{#if user}}
+  <h2>Welcome {{user.name}}</h2>
+{{/if}}

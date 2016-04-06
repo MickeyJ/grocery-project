@@ -1,28 +1,29 @@
 var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
+    uglify = require('gulp-uglify'),
+    streamify = require('gulp-streamify'),
     babelify = require('babelify'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream');
-
 
 //          JS/ES2015
 // ***********************
 gulp.task('scripts', () =>{
   browserify({
-    entries: 'src/js/index.js',
+    entries: 'src/js/',
     extensions: ['.js'],
     debug: true
   })
   .transform(babelify, { presets: ['es2015'] })
   .bundle()
   .pipe(source('script.min.js'))
+  .pipe(streamify(uglify()))
   .pipe(gulp.dest('public/javascripts'));
 });
 
 //          SCSS
 // ***********************
-gulp.task('sass', function(){
+gulp.task('sass', () =>{
   gulp.src('src/scss/main.scss')
     .pipe(sass({
       outputStyle: 'compressed'
@@ -32,7 +33,7 @@ gulp.task('sass', function(){
 
 // Watcher
 // *************************
-gulp.task('watch', function(){
+gulp.task('watch', () =>{
   gulp.watch('src/js/**/*.js', ['scripts']);
   gulp.watch('src/scss/**/*.scss', ['sass']);
 });

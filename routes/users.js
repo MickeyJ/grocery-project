@@ -19,16 +19,29 @@ router.get('/', (req, res, next) =>{
 
 router.post('/signup', valid.Signup, (req, res, next) =>{
     let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(req.body.password, salt);
+    let hash = bcrypt.hashSync(req.body.signup_password, salt);
     Users()
       .insert({
-        name: req.body.name,
-        email: req.body.email,
+        name: req.body.signup_name,
+        email: req.body.signup_email,
         password: hash
       })
-      .then(response => {})
+      .then(() => {
+        res.redirect(`/home/${req.body.signup_name}`)
+      })
       .catch(err =>{ next(new Error(err)) });
-    res.redirect('/')
 });
+
+router.post('/login', valid.Login, (req, res, next) =>{
+  Users()
+    .where({email: req.body.login_email})
+    .then(user => {
+      console.log(user);
+      res.redirect(`/home/${user[0].name}`)
+    })
+    .catch(err =>{ next(new Error(err)) });
+});
+
+
 
 module.exports = router;
