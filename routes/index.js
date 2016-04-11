@@ -13,7 +13,6 @@ router.get('/home/:user', (req, res, next) =>{
   Users()
     .where({name: req.params.user}).first()
     .then(user => {
-      console.log(user);
       res.render('index', {
         title: 'Order Stuff Website',
         user

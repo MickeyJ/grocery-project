@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const browse = require('./routes/browse');
+const api = require('./routes/api');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/browse', browse);
+app.use('/api', api);
 
 app.use((req, res, next) =>{
   let err = new Error('Not Found');

@@ -1,15 +1,17 @@
 import $ from 'jquery'
-import { UserSignup, Valid }from './user'
+import { 
+  UserSignup, 
+  Valid, 
+  regexEmail, 
+  regexPassword 
+}from './user'
 
 const user = new UserSignup();
 const valid= new Valid();
 
 $(function(){
-  const regexEmail    = /^([A-Za-z\._\-0-9])*[@]([A-Za-z\._\-0-9])*[\.]([A-Za-z]{2,4})$/;
-  const regexPassword = /\d\w/;
-  
   user.name.on('change', function(){
-    valid.Name(this, this.value)
+    valid.Length(this, this.value)
   });
   user.email.on('change', function(){
     valid.Regex(this, this.value, regexEmail);
@@ -22,5 +24,4 @@ $(function(){
       e.preventDefault()
     }
   })
-
 });

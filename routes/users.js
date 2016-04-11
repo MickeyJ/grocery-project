@@ -9,7 +9,6 @@ const Users = function() { return knex('users') };
 router.get('/', (req, res, next) =>{
   Users().then(function(users){
     if (users) {
-      console.log(users);
       res.json(users);
     } else {
       res.status(401).json({ message: "Ain't No Users eh?" });
@@ -36,12 +35,9 @@ router.post('/login', valid.Login, (req, res, next) =>{
   Users()
     .where({email: req.body.login_email})
     .then(user => {
-      console.log(user);
       res.redirect(`/home/${user[0].name}`)
     })
     .catch(err =>{ next(new Error(err)) });
 });
-
-
 
 module.exports = router;
